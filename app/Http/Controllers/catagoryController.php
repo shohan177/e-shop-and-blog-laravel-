@@ -42,7 +42,7 @@ class catagoryController extends Controller
             'slug' => Str::slug($request -> name)
         ]);
 
-        return true;
+        return $request -> name;
     }
 
     /**
@@ -64,7 +64,8 @@ class catagoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Catagory::find($id);
+        return $data;
     }
 
     /**
@@ -74,9 +75,16 @@ class catagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = Catagory::find($request -> id);
+        $data -> name = $request -> name;
+        $data -> slug =  Str::slug($request -> name);
+        $data -> update();
+
+        return $request-> name;
+
+
     }
 
     /**
@@ -85,9 +93,11 @@ class catagoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+       $data = Catagory::find($request -> did);
+       $data -> delete();
+       return  $data -> name;
     }
     // show all catagory data
     public function showAll(){
@@ -101,22 +111,23 @@ class catagoryController extends Controller
                 <td><?php echo $d -> slug; ?></td>
                 <td>
                    <?php if( $d -> status == "pub" ):?>
-                        <span class="badge badge-success">published</span>
+                        <span class="badge badge-pill bg-success inv-badge">published</span>
                    <?php else: ?>
-                        <span class="badge badge-danger">published</span>
+                        <span class="badge badge-pill bg-danger shadow inv-badge">published</span>
 
                    <?php endif ?>
                 </td>
                 <td>
                 <?php if( $d -> status == "pub" ):?>
-                        <a id="hide" href="#" extr="<?php echo $d -> id; ?>" class="btn btn-info"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                        <a id="hide" class="btn  btn-info" href="#" extr="<?php echo $d -> id; ?>" ><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                    <?php else: ?>
-                        <a  id="show" href="#" extr="<?php echo $d -> id; ?>" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a  id="show" class="btn border border-success bg-success-light shadow" href="#" extr="<?php echo $d -> id; ?>" ><i class="fa fa-eye" aria-hidden="true"></i></a>
                    <?php endif ?>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="#" id="cat_edit" extr="<?php echo $d -> id; ?>" class="btn btn-sm  btn-warning">Edit</a>
+                    <a href="#" class="btn btn-sm  bg-danger-light"  id="delete_cat" extr="<?php echo $d -> id; ?>" ><i class="fe fe-trash"></i> Delete</a>
 
                 </td>
+            </tr>
             </tr>
         <?php
         }
@@ -145,4 +156,6 @@ class catagoryController extends Controller
         echo $data -> name;
 
     }
+
+
 }

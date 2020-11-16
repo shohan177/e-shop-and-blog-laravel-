@@ -3,6 +3,7 @@
 <script src="{{ asset('admin/assets/js/Custom/custom.js') }}"></script>
 
 <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
+<script src="{{ asset('admin/assets/js/sweetalert.min.js') }}"></script>
 
 <!-- Bootstrap Core JS -->
 <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>

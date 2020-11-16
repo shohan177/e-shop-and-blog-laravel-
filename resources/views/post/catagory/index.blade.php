@@ -8,10 +8,10 @@
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Basic Tables</h3>
+                    <h3 class="page-title">Catagory Tables</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Basic Tables</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashbord</a></li>
+                        <li class="breadcrumb-item active">Catagory Table</li>
                     </ul>
                 </div>
             </div>
@@ -19,15 +19,15 @@
         <!-- /Page Header -->
 
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
-                                <h4 class="card-title">All Catagory</h4>
+                                <h4 class="card-title">Catagory Table</h4>
                             </div>
                             <div class="col">
-                                <form id="catagory_form" action="" method="POST">
+                                <form id="catagory_form" action="" method="POST" >
                                     @csrf
                                     <div class="row">
 
@@ -64,6 +64,53 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">Tag Table</h4>
+                        </div>
+
+                        <div class="col">
+                            <form id="tag_form" action="" method="POST" >
+                                @csrf
+                                <div class="row">
+
+                                    <div class="col-sm-6">
+                                        <input name="name" class="form-control" type="text" placeholder="Tag name">
+
+                                    </div>
+                                    <div class="col">
+                                        <input type="submit" value="Add" class="btn btn-info border-warning">
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-nowrap mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="tag_body">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -71,5 +118,6 @@
 <!-- /Main Wrapper -->
 
 </div>
+
 
 @endsection

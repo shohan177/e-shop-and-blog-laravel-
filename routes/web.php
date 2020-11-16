@@ -25,4 +25,9 @@ Route::post('/catagory-create', 'App\Http\Controllers\catagoryController@store')
 Route::get('/catagory-all', 'App\Http\Controllers\catagoryController@showAll');
 Route::get('/catagory-unpublished', 'App\Http\Controllers\catagoryController@unpublished');
 Route::get('/catagory-published', 'App\Http\Controllers\catagoryController@published');
+Route::get('/catagory-delete', 'App\Http\Controllers\catagoryController@destroy');
+Route::get('/catagory-edit/{id}', 'App\Http\Controllers\catagoryController@edit');
+Route::get('/catagory-update', 'App\Http\Controllers\catagoryController@update');
+Route::post('/tag-create', 'App\Http\Controllers\tagController@store');
+Route::get('/tag-all', 'App\Http\Controllers\tagController@showAll');
 

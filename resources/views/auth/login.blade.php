@@ -39,6 +39,8 @@
 								<h1>Login</h1>
 								<p class="account-subtitle">Access to our dashboard</p>
 
+
+
 								<!-- Form -->
                                 <form action={{ route('login') }} method="POST">
                                     @csrf
