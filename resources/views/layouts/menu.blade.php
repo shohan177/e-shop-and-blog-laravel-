@@ -23,7 +23,8 @@
                     <a href="#"><i class="fe fe-document"></i> <span>Post</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('post-catagory.index') }}"> Catagoy </a></li>
-                        <li><a href="register.html"> Post </a></li>
+                        <li><a href="{{ route("post.index") }}"> Post </a></li>
+                        <li><a href="post#add_post">Add Post </a></li>
                         {{-- <li><a href="forgot-password.html"> Forgot Password </a></li>
                         <li><a href="lock-screen.html"> Lock Screen </a></li> --}}
                     </ul>

@@ -64,7 +64,8 @@ class tagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Tag::find($id);
+        return $data;
     }
 
     /**
@@ -74,9 +75,13 @@ class tagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = Tag::find($request -> id);
+        $data -> name = $request -> name;
+        $data -> update();
+        return $request -> name;
+
     }
 
     /**
@@ -87,7 +92,10 @@ class tagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Tag::find($id);
+        $data -> delete();
+
+        return $data -> name;
     }
     //show all
     public function showAll(){
@@ -101,19 +109,45 @@ class tagController extends Controller
             <td><?php echo $d->name;?></td>
             <td><?php echo $d->slug;?></td>
             <td>
-
+                <?php if($d -> status == "active"):?>
                     <span class="badge badge-pill bg-success inv-badge">Active</span>
-
+                <?php else:?>
+                    <span class="badge badge-pill bg-danger inv-badge shadow">Active</span>
+                <?php endif ?>
             </td>
             <td>
-                <a id="hide" class="btn  btn-info" href="#" extr="" ><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                 <a href="#" id="tag_edit" extr="" class="btn btn-sm btn-secondary">Edit</a>
-                <a href="#" class="btn btn-sm  bg-info-light border-warning"  id="delete_tag" extr="" ><i class="fe fe-trash"></i> Delete</a>
+                <?php if($d -> status == "active"):?>
+                    <a id="tag_status_dactive" class="btn  btn-info" href="#" extr="<?php echo $d->id;?>" ><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                <?php else:?>
+                    <a id="tag_status_active" class="btn  bg-success-light border-success shadow" href="#" extr="<?php echo $d->id;?>" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                <?php endif ?>
+                 <a href="#" id="tag_edit" extr="<?php echo $d->id;?>" class="btn btn-sm btn-secondary">Edit</a>
+                <a href="#" class="btn btn-sm  bg-info-light border-warning"  id="delete_tag" extr="<?php echo $d->id;?>" ><i class="fe fe-trash"></i> Delete</a>
 
             </td>
 
 
             <?php
+        }
+    }
+
+    //active tag action
+    function active($id, $action){
+
+        if ($action == "deactivate"){
+
+            $data = Tag::find($id);
+            $data -> status = "deactivate";
+            $data -> update();
+            return $data -> name;
+
+        }elseif($action == "active"){
+
+            $data = Tag::find($id);
+            $data -> status = "active";
+            $data -> update();
+            return $data -> name;
+
         }
     }
 

@@ -1,7 +1,9 @@
 (function($){
 
     $(document).ready(function(){
+        //ck editor
 
+        CKEDITOR.replace('post_contain')
 
         $('a#logout_click').click(function(e){
             e.preventDefault()
@@ -231,6 +233,7 @@
                 contentType: false,
                 processData: false,
                 success: function(data){
+                    $('form#tag_form')[0].reset()
                     showAllTag()
                     notifi('success',"Tag added successfully",data)
                 }
@@ -252,5 +255,131 @@
         })
     }
     showAllTag()
+
+    // tag satatus
+    // deactive
+    $(document).on('click','a#tag_status_dactive',function(e){
+        e.preventDefault()
+        let id = $(this).attr('extr')
+
+        $.ajax({
+            url: '/tag-status/'+id+'/'+'deactivate',
+            method: "GET",
+            success: function(data){
+
+                showAllTag()
+                notifi('error',"Tag deactivete successfully",data)
+            }
+        })
+    });
+
+    // active
+    $(document).on('click','a#tag_status_active',function(e){
+        e.preventDefault()
+        let id = $(this).attr('extr')
+
+        $.ajax({
+            url: '/tag-status/'+id+'/'+'active',
+            method: "GET",
+            success: function(data){
+
+                showAllTag()
+                notifi('success',"Tag active successfully",data)
+            }
+        })
+
+    })
+
+    // delete tag
+    $(document).on('click','a#delete_tag',function(e){
+        e.preventDefault()
+        let id = $(this).attr('extr')
+
+
+        swal({
+            title: "Are you sure?",
+            text: "You want to delete this Tag",
+            icon: "error",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                $.ajax({
+                    url: '/tag-delete/'+id,
+                    method: "GET",
+                    success: function(data){
+                        showAllTag()
+                        notifi('error',"Tag is deleted",data)
+                    }
+                })
+
+
+            // } else {
+            //   swal("The catagory is safe");
+            }
+          });
+    })
+    //tag edit
+    $(document).on('click','a#tag_edit',function(e){
+        e.preventDefault()
+        let id = $(this).attr('extr')
+        $.ajax({
+            url: '/tag-edit/'+id,
+            dataType: "json",
+            success: function(data){
+            //edit pupup
+            swal( {
+            button: "Update",
+            content: {
+                element: "input",
+                attributes: {
+                value: data.name,
+                type: "text",
+                },
+            },
+
+            })
+            .then((value) => {
+                let edit_data = `${value}`
+                if(edit_data != "null"){
+
+                    if(edit_data !== "" && edit_data != null){
+
+                        $.ajax({
+                            url:'/tag-update',
+                            data: { name : edit_data , id : data.id},
+                            method: "GET",
+                            success: function(cat){
+                                showAllTag()
+                                notifi('success',"Tag update succefully", data.name +" ___To___ "+ cat)
+                            }
+                        })
+                    }else{
+                        notifi('info',"Nothing to update",data.name)
+                    }
+                }
+
+              });
+            }
+        });
+
+
+
+    })
+
+    //psot------------------->
+
+    //psot iamge show
+    $(document).on('change','input#up_photo',function(e){
+
+        let post_photo = URL.createObjectURL(e.target.files[0])
+        console.log(post_photo)
+        $('img#post_image_view').attr('src',post_photo)
+    });
+
+
+
 
 })(jQuery)
