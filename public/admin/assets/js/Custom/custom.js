@@ -1,6 +1,17 @@
 (function($){
 
     $(document).ready(function(){
+        //register error notification
+        $("input[name^='error']").each(function () {
+            let err = $(this).val();
+            console.log($(this).val());
+
+            notifi('warning',err,"Required")
+
+
+         });
+
+
         //ck editor
 
         CKEDITOR.replace('post_contain')
@@ -12,15 +23,20 @@
         });
 
 
-
+        //Post succes notification
         $("input[name^='mess']").each(function () {
             let err = $(this).val();
+            let action_name = $(this).attr('action')
+            let mees_head = $(this).attr('bold_mess')
             console.log($(this).val());
 
-            notifi('warning',err,"Required")
+            notifi(action_name,err,mees_head)
 
 
          });
+
+
+
 
 
          catagoryAll()

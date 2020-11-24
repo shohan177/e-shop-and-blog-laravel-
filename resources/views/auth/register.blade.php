@@ -18,7 +18,7 @@
 
 		<!-- Main CSS -->
         <link rel="stylesheet" href="admin/assets/css/style.css">
-        <link rel="stylesheet" href="admin/assets/css/toastr.min.css">
+        <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">
 
 		<!--[if lt IE 9]>
 			<script src="admin/assets/js/html5shiv.min.js"></script>
@@ -41,7 +41,7 @@
 								<p class="account-subtitle">Access to our dashboard</p>
                                 @if ($errors -> any())
                                     @foreach (($errors -> all()) as $err)
-                                        <input name= "mess[]" type="hidden" value="{{ $err }}">
+                                        <input  name= "error[]" type="hidden" value="{{$err }}">
                                     @endforeach
                                 @endif
 								<!-- Form -->
@@ -77,7 +77,7 @@
 								</div>
 								<!-- /Social Login -->
 
-								<div class="text-center dont-have">Already have an account? <a href="login.html">Login</a></div>
+								<div class="text-center dont-have">Already have an account? <a href="{{ route("login") }}">Login</a></div>
 							</div>
                         </div>
                     </div>
@@ -87,16 +87,16 @@
 		<!-- /Main Wrapper -->
 
 		<!-- jQuery -->
-        <script src="admin/assets/js/jquery-3.2.1.min.js"></script>
-        <script src="admin/assets/js/Custom/custom.js"></script>
-        <script src="admin/assets/js/toastr.min.js"></script>
+        <script src="{{ asset('admin/assets/js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/Custom/custom.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
 
 		<!-- Bootstrap Core JS -->
-        <script src="admin/assets/js/popper.min.js"></script>
-        <script src="admin/assets/js/bootstrap.min.js"></script>
+        <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>
+        <script src="{{ asset('admin/assets/js/bootstrap.min.js') }}"></script>
 
 		<!-- Custom JS -->
-		<script src="admin/assets/js/script.js"></script>
+		<script src="{{ asset('admin/assets/js/script.js') }}"></script>
 
     </body>
 

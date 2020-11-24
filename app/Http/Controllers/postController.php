@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catagory;
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class postController extends Controller
 {
@@ -12,8 +17,10 @@ class postController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('post.index');
+    {   $category_data = Catagory::all();
+        $tag_data = Tag::all();
+        $post_data = Post::all();
+        return view('post.index',compact('category_data','tag_data','post_data'));
     }
 
     /**
@@ -34,7 +41,35 @@ class postController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //photo updoad
+        if ($request -> hasFile('photo')) {
+
+            $img = $request -> photo;
+            $u_img = md5(time().rand()).'.'.$img -> getClientOriginalExtension();
+            $img -> move(public_path('media/post'),$u_img);
+
+        } else {
+            $u_img = "";
+        }
+
+
+        $post_data_push = Post::create([
+            'title' => $request -> titel,
+            'slug' => Str::slug($request -> titel),
+            'status' => "published",
+            'contain' => $request -> conatin,
+            'photo' => $u_img,
+            'user_id' => Auth::user() -> id,
+        ]);
+
+        $post_data_push -> catagories() -> attach($request -> cat_id);
+        $post_data_push -> tags() -> attach($request -> tag);
+        return back() -> with('success','Save to database');
+
+
+
+
     }
 
     /**
