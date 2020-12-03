@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Catagory;
+use App\Models\Category_post;
+
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Str;
 
 class postController extends Controller
@@ -57,7 +61,7 @@ class postController extends Controller
         $post_data_push = Post::create([
             'title' => $request -> titel,
             'slug' => Str::slug($request -> titel),
-            'status' => "published",
+            'status' => 1,
             'contain' => $request -> conatin,
             'photo' => $u_img,
             'user_id' => Auth::user() -> id,
@@ -91,7 +95,9 @@ class postController extends Controller
      */
     public function edit($id)
     {
-        //
+
+
+
     }
 
     /**
@@ -114,6 +120,32 @@ class postController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Post::find($id);
+       $data -> delete();
+
+        return back() -> with('del_post','Post delete succesfullty');
+
+    }
+
+    // post status
+    public function status($id, $action){
+        if($action == 0){
+
+            $data = Post::find($id);
+            $data -> status = 0;
+            $data -> update();
+
+            return back();
+
+        }else{
+            $data = Post::find($id);
+            $data -> status = 1;
+            $data -> update();
+
+            return back();
+
+        }
+
+
     }
 }

@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('frontend.home');
+// });
+// Route::get('/blog', function () {
+//     return view('frontend.blog');
+// });
+
+// Route::get('/single-blog', function () {
+//     return view('frontend.blog-single');
+// });
 
 Auth::routes();
 
@@ -42,5 +49,16 @@ Route::get('/tag-update', 'App\Http\Controllers\tagController@update');
 
 //post route
 Route::resource('post', 'App\Http\Controllers\postController');
+Route::get('/post-edit/{id}', 'App\Http\Controllers\postController@edit');
+Route::get('/post-delete/{id}', 'App\Http\Controllers\postController@destroy');
+Route::get('/post-deactive', 'App\Http\Controllers\postController@destroy');
+Route::get('/post-deactive/{id}/{action}', 'App\Http\Controllers\postController@status');
+
+
+//frontend url
+Route::get('/', 'App\Http\Controllers\frontendController@homePage');
+Route::get('/blog', 'App\Http\Controllers\frontendController@blog');
+Route::get('/blog-single', 'App\Http\Controllers\frontendController@blog_single');
+
 
 

@@ -13,6 +13,7 @@
 
 
         //ck editor
+        $('table#post_table').DataTable()
 
         CKEDITOR.replace('post_contain')
 
@@ -396,6 +397,38 @@
     });
 
 
+    //post edit
+    $(document).on('click','a#post_edit',function(e){
+        e.preventDefault()
+
+
+        $('html, body').animate({
+            scrollTop: $("#add_post").offset().top
+        }, 600);
+
+        let post_id = $(this).attr('e_post_id')
+        $.ajax({
+            url: '/post-edit/'+post_id,
+            success: function(data){
+               console.log(data.catagory_id);
+            }
+        })
+
+
+
+    })
+
+   // post delete
+    $(document).on('click','a#delete_post',function(e){
+
+        var r = confirm("Are you sure you want to delete this");
+        if (r == true) {
+            return true
+        } else {
+            return false
+        }
+
+    })
 
 
 })(jQuery)

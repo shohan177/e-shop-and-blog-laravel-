@@ -27,6 +27,14 @@
             <input name= "mess[]" action="success" bold_mess ="save" type="hidden" value="{{ Session::get('success') }}">
         @endif
 
+        @if (Session::has('del_post'))
+            <input name= "mess[]" action="error" bold_mess ="Delete" type="hidden" value="{{ Session::get('del_post') }}">
+        @endif
+
+
+
+
+
 
         <div class="row">
 
@@ -36,13 +44,14 @@
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <table class="datatable table table-hover table-center mb-0">
+                            <table id="post_table" class="table table-hover table-center mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Titlel</th>
                                         <th>photp</th>
                                         <th>Category</th>
+                                        <th>Tag</th>
                                         <th>Time</th>
                                         <th>User</th>
                                         <th class="text-center">Status</th>
@@ -67,30 +76,45 @@
                                         </td>
                                         <td>
                                             @foreach ($d -> catagories as $item)
-                                                {{ $item -> name }} ,
+                                            <i class="fa fa-bookmark-o" style="color:rgb(235, 127, 3)"  valu aria-hidden="true"></i> {{ $item -> name }}
                                             @endforeach
 
 
                                         </td>
                                         <td>
                                             @foreach ($d -> tags as $item)
-                                                 {{ $item -> name }} ,
+                                            <i class="fa fa-tags" style="color:rgb(10, 207, 197)"  aria-hidden="true"></i>  {{ $item -> name }}
                                             @endforeach
 
                                         </td>
-                                        <td>admin</td>
+                                        <td>
+                                            <i class="fa fa-clock-o" style="color:rgb(111, 88, 241)"  aria-hidden="true"></i>  {{ $d -> updated_at -> diffForHumans() }}
+                                        </td>
+                                        <td><i class="fa fa-user-o" style="color:rgb(47, 153, 252)" aria-hidden="true"></i>  {{ $d -> user_name -> name }}</td>
                                         <td class="text-center">
-                                            <span class="badge badge-pill bg-success inv-badge">Paid</span>
+                                            @if ($d -> status == 1)
+                                             <span class="badge badge-pill bg-success inv-badge">Active</span>
+                                            @else
+                                            <span class="badge badge-pill bg-danger inv-badge">Active</span>
+                                            @endif
+
                                         </td>
                                         <td class="text-right">
                                             <div class="actions">
-                                                <a class="btn btn-sm bg-warning-light border-warning shadow" data-toggle="modal" href="#delete_modal">
-                                                    <i class="fa fa-eye-slash"></i> deactive
-                                                </a>
-                                                <a class="btn btn-sm bg-info-light border-info shadow" data-toggle="modal" href="#delete_modal">
+                                               @if ($d -> status == 1)
+                                                    <a class="btn btn-sm bg-warning-light border-warning shadow"  href="{{ url('post-deactive/'.$d -> id.'/'.'0') }}">
+                                                        <i class="fa fa-eye-slash"></i> deactive
+                                                    </a>
+                                               @else
+                                                    <a class="btn btn-sm bg-success-light border-success shadow"  href="{{ url('post-deactive/'.$d -> id.'/'.'1') }}">
+                                                        <i class="fa fa-eye-slash"></i> Active
+                                                    </a>
+                                               @endif
+
+                                                <a class="btn btn-sm bg-info-light border-info shadow" e_post_id="{{ $d -> id }}" data-toggle="modal" id="post_edit" href="#">
                                                     <i class="fa fa-pencil-square-o"></i> Edit
                                                 </a>
-                                                <a class="btn btn-sm bg-danger-light border-danger shadow" data-toggle="modal" href="#delete_modal">
+                                                <a class="btn btn-sm bg-danger-light border-danger shadow" id="delete_post"  href="{{ url('post-delete/'.$d -> id) }}">
                                                     <i class="fe fe-trash"></i> Delete
                                                 </a>
                                             </div>

@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->string('user_id');
             $table->string('photo');
-            $table->string('status') -> default('published');
+            $table->unsignedInteger('status') -> default(1);
             $table->longText('contain');
             $table->timestamps();
         });
