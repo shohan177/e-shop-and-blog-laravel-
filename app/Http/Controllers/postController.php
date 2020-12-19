@@ -95,8 +95,8 @@ class postController extends Controller
      */
     public function edit($id)
     {
-
-
+        $post_data = Post::find($id);
+        return $post_data;
 
     }
 

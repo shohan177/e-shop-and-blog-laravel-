@@ -27,7 +27,7 @@
             <article class="post-single">
                         <div class="post-info">
                             <h2><a href="#">{{ $post -> title }}</a></h2>
-                            <h6 class="upper"><span>By</span><a href="#">{{ $post -> user_name -> name }}</a><span class="dot"></span><span>28 September 2015</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
+                            <h6 class="upper"><span>By</span><a href="#">{{ $post -> user_name -> name }}</a><span class="dot"></span><span>{{ date('d F Y' ,strtotime($post -> created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
                         </div>
                         <div class="post-media">
                             <div data-options="{&quot;animation&quot;: &quot;slide&quot;, &quot;controlNav&quot;: true" class="flexslider nav-outside">
@@ -46,8 +46,9 @@
                             </div>
                         </div>
                         <div class="post-body">
-                            <div class="div">{{ $post -> contain }}</div><a href="#" class="btn btn-color btn-sm">Read More</a>
-                            </p>
+                            <div class="div"></div>    {!! Str::of(htmlspecialchars_decode($post -> contain)) -> words('40','...') !!}<br><a href="#" class="btn btn-color btn-sm">Read More</a>
+
+
                         </div>
                         </article>
             @endforeach
@@ -56,6 +57,7 @@
 
 
           </div>
+          {{ $post_data -> links() }}
           <ul class="pagination">
             <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="ti-arrow-left"></i></span></a>
             </li>

@@ -410,7 +410,9 @@
         $.ajax({
             url: '/post-edit/'+post_id,
             success: function(data){
-               console.log(data.catagory_id);
+                $('#edit_post input[name = "titel"]').val(data.title)
+                $('#post_image_view').attr('src',"media/post/"+ data.photo)
+
             }
         })
 

@@ -13,7 +13,7 @@ class frontendController extends Controller
     }
 
     public function blog(){
-        $post_data = Post::latest() -> get();
+        $post_data = Post::latest() -> paginate(2);
         return view('frontend.blog',compact('post_data'));
     }
 

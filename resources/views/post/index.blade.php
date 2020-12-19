@@ -143,7 +143,7 @@
 
         <div class="row">
             <div id="add_post" class="col-sm-8 p-4 ml-3 shadow">
-                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('post.store') }}" method="POST" id="edit_post" enctype="multipart/form-data">
                     @csrf
                     <h3 class="page-title">Add Post</h3>
                     <div class="form-group">
