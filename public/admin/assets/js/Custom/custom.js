@@ -1,6 +1,10 @@
 (function($){
 
     $(document).ready(function(){
+
+        $('#add_post').removeClass('d-none')
+        $('#edit_post').addClass('d-none')
+
         //register error notification
         $("input[name^='error']").each(function () {
             let err = $(this).val();
@@ -16,6 +20,7 @@
         $('table#post_table').DataTable()
 
         CKEDITOR.replace('post_contain')
+        CKEDITOR.replace('add_post_contain')
 
         $('a#logout_click').click(function(e){
             e.preventDefault()
@@ -387,7 +392,13 @@
     })
 
     //psot------------------->
-
+    $(document).on('click','a#add_new_post',function(){
+        $('#add_post').removeClass('d-none')
+        $('#edit_post').addClass('d-none')
+        $('html, body').animate({
+            scrollTop: $("#add_post").offset().top
+        }, 600);
+    })
     //psot iamge show
     $(document).on('change','input#up_photo',function(e){
 
@@ -395,6 +406,22 @@
         console.log(post_photo)
         $('img#post_image_view').attr('src',post_photo)
     });
+
+    // post update image show
+    $(document).on('change','input#update_photo',function(e){
+
+        let update_post_photo = URL.createObjectURL(e.target.files[0])
+
+        $('img#update_post_image_view').attr('src',update_post_photo)
+    });
+    //add product image
+    $(document).on('change','input#product_photo',function(e){
+
+        let product_photo = URL.createObjectURL(e.target.files[0])
+
+        $('img#product_image_view').attr('src',product_photo)
+    });
+
 
 
     //post edit
@@ -406,12 +433,28 @@
             scrollTop: $("#add_post").offset().top
         }, 600);
 
+        $('#cat_select').find('option').remove().end()
+        $('#tag_select').find('option').remove().end()
+        $('#add_post').addClass('d-none')
+        $('#edit_post').removeClass('d-none')
+
+
+
         let post_id = $(this).attr('e_post_id')
         $.ajax({
             url: '/post-edit/'+post_id,
             success: function(data){
-                $('#edit_post input[name = "titel"]').val(data.title)
-                $('#post_image_view').attr('src',"media/post/"+ data.photo)
+
+                $('#update_post input[name = "titel"]').val(data.title)
+                $('#update_post input[name = "id"]').val(data.id)
+                $('#update_post input[name = "old_photo"]').val(data.photo)
+
+                $('#update_post_image_view').attr('src',"media/post/"+ data.photo)
+                $('#cat_select').html(data.cat_list)
+                $('#tag_select').html(data.tag_list)
+                CKEDITOR.instances.post_contain.setData( data.contain, function(){
+                        this.checkDirty();
+                    });
 
             }
         })
@@ -422,15 +465,55 @@
 
    // post delete
     $(document).on('click','a#delete_post',function(e){
+        e.preventDefault()
+        $d_id = $(this).attr('d_post_id')
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
 
-        var r = confirm("Are you sure you want to delete this");
-        if (r == true) {
-            return true
-        } else {
-            return false
-        }
+              $.ajax({
+                  url: "/post-delete/"+$d_id,
+                  method: "GET",
+                  success: function(data){
+                    location.reload()
+                  }
+              })
+            } else {
+              swal("Your Post is safe");
+            }
+          });
 
     })
 
+    // pst end
+    $(document).on('submit','form#add_product',function(e){
+        e.preventDefault()
+        $n_price = $("input[name='price']").val()
+        $s_price = $("input[name='sp_price']").val()
+        // if($n_price < $s_price){
+        //     $("#mees_price").html("Higher then Regular price")
+        // }else{
+        //     $("#mees_price").html("")
+          $.ajax({
+            url:"/product",
+            data: new FormData(this),
+            method:"POST",
+            contentType: false,
+            processData: false,
+            success: function(data){
+                $("form#add_product")[0].reset()
+                $('#product_image_view').attr('src',"admin/media/default.png")
+                notifi('success',"Product add successfully",data)
+            }
+        })
+        //}
 
+
+    })
 })(jQuery)

@@ -23,28 +23,14 @@
         <div class="col-md-8">
           <article class="post-single">
             <div class="post-info">
-              <h2><a href="#">Checklists for Startups</a></h2>
-              <h6 class="upper"><span>By</span><a href="#"> Admin</a><span class="dot"></span><span>28 September 2015</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
+              <h2><a href="#">{{ $s_post -> title }}</a></h2>
+              <h6 class="upper"><span>By</span><a href="#">{{ $s_post -> user_name -> name }}</a><span class="dot"></span><span>{{ date('d F Y' ,strtotime($s_post -> created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
             </div>
             <div class="post-media">
-              <img src="frontend/images/blog/1.jpg" alt="">
+                <img src="{{ URL::to('/') }}/media/post/{{ $s_post -> photo }}" alt="">
             </div>
             <div class="post-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae ut ratione similique temporibus tempora dicta soluta? Qui hic, voluptatem nemo quo corporis dignissimos voluptatum debitis cumque fugiat mollitia quasi quod. Repudiandae
-                possimus quas odio nisi optio asperiores, vitae error laudantium, ratione odit ipsa obcaecati debitis deleniti minus, illo maiores placeat omnis magnam.</p>
-              <blockquote class="serif">
-                <p>Modi perferendis ipsa, dolorum eaque accusantium! Velit libero fugit dolores repellendus consequatur nisi, deserunt aperiam a ea ex hic, iusto atque, quas. Aliquam rerum dolores saepe sunt, assumenda voluptas.</p>
-              </blockquote>
-              <p>Ipsa in adipisci eius qui quos minima ratione velit reprehenderit fuga deleniti amet quidem commodi ducimus.</p>
-              <h3>In hac habitasse platea dictumst.</h3>
-              <p>Sapiente amet eaque soluta perferendis. Quia ex sit sint voluptate ipsa culpa, veritatis:</p>
-              <ul>
-                <li>Proin elementum ante quis mauris</li>
-                <li>Integer dictum magna vitae ullamcorper sodales</li>
-                <li>Integer non placerat diam, id ornare est. Curabitur sit amet lectus vitae urna.</li>
-                <li>Vestibulum ante ipsum primis in faucibus</li>
-              </ul>
-              <p>Labore expedita officiis, in perspiciatis atque voluptates odio dignissimos doloribus quibusdam est minus ullam nulla quisquam nihil aspernatur rem laborum accusantium animi.</p>
+                {!! Str::of(htmlspecialchars_decode($s_post -> contain)) !!}
             </div>
           </article>
           <!-- end of article-->

@@ -51,14 +51,29 @@ Route::get('/tag-update', 'App\Http\Controllers\tagController@update');
 Route::resource('post', 'App\Http\Controllers\postController');
 Route::get('/post-edit/{id}', 'App\Http\Controllers\postController@edit');
 Route::get('/post-delete/{id}', 'App\Http\Controllers\postController@destroy');
+Route::post('/post-update', 'App\Http\Controllers\postController@postUpate') -> name('update_post');
 Route::get('/post-deactive', 'App\Http\Controllers\postController@destroy');
 Route::get('/post-deactive/{id}/{action}', 'App\Http\Controllers\postController@status');
 
+//product route
+Route::resource('/product', 'App\Http\Controllers\productController');
+Route::resource('/product-category', 'App\Http\Controllers\ProductCatagoryTagCon');
 
-//frontend url
+                            //---------------
+                            //frontend url
+                            //--------------
+
+// -------------------------------------------------------------------------
+// blogs
 Route::get('/', 'App\Http\Controllers\frontendController@homePage');
 Route::get('/blog', 'App\Http\Controllers\frontendController@blog');
-Route::get('/blog-single', 'App\Http\Controllers\frontendController@blog_single');
+Route::get('/blog-single/{slug}', 'App\Http\Controllers\frontendController@blog_single') -> name('bolg_single');
+Route::get('/blog-category/{slug}', 'App\Http\Controllers\frontendController@searchBlogCat') -> name('bolg_category_search');
+Route::get('/blog-tag/{slug}', 'App\Http\Controllers\frontendController@searchBlogTag') -> name('bolg_tag_search');
+Route::get('/blog-recent/{slug}', 'App\Http\Controllers\frontendController@recentBlog') -> name('recent_blog');
 
-
-
+//----------------------------------------------------------------------------
+//product
+Route::get('/products', 'App\Http\Controllers\frontendController@productShow') -> name('products');
+Route::get('/category-products-category/{slug}', 'App\Http\Controllers\frontendController@productByCategory') -> name('products-categorys');
+Route::get('/products-tag/{slug}', 'App\Http\Controllers\frontendController@productBytag') -> name('products-tags');

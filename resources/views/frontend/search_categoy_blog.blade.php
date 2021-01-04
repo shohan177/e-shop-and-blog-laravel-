@@ -23,7 +23,7 @@
         <div class="col-md-8">
           <div class="blog-posts">
 
-            @foreach ($post_data as $post)
+            @foreach ($category_s_post ->posts as $post)
             <article class="post-single">
                         <div class="post-info">
                             <h2><a href="#">{{ $post -> title }}</a></h2>
@@ -57,8 +57,8 @@
 
 
           </div>
-          {{ $post_data -> links() }}
-          <ul class="pagination">
+          {{-- {{ $post_data -> links() }} --}}
+          {{-- <ul class="pagination">
             <li><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="ti-arrow-left"></i></span></a>
             </li>
             <li class="active"><a href="#">1</a>
@@ -73,7 +73,7 @@
             </li>
             <li><a href="#" aria-label="Next"><span aria-hidden="true"><i class="ti-arrow-right"></i></span></a>
             </li>
-          </ul>
+          </ul> --}}
           <!-- end of pagination-->
         </div>
         {{-- side bar --}}

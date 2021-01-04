@@ -85,8 +85,8 @@
         <!-- Navigation Menu-->
         <ul class="navigation-menu">
           <li class="has-submenu">
-            <a href="#">Home</a>
-            <ul class="submenu megamenu">
+            <a href="{{ url('/') }}">Home</a>
+            {{-- <ul class="submenu megamenu">
               <li>
                 <ul>
                   <li>
@@ -159,8 +159,8 @@
                   </li>
                 </ul>
               </li>
-            </ul>
-          </li>
+            </ul> --}}
+          {{-- </li>
           <li class="has-submenu">
             <a href="#">Pages</a>
             <ul class="submenu megamenu">
@@ -317,10 +317,10 @@
                 </ul>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <li class="has-submenu">
-            <a href="#">Blog</a>
-            <ul class="submenu">
+            <a href="{{ url('/blog') }}">Blog</a>
+            {{-- <ul class="submenu">
               <li>
                 <a href="blog-fixed-image.html">Fixed Image</a>
               </li>
@@ -366,11 +366,11 @@
                   </li>
                 </ul>
               </li>
-            </ul>
+            </ul> --}}
           </li>
           <li class="has-submenu">
-            <a href="#">Shop</a>
-            <ul class="submenu">
+            <a href="{{ route('products') }}">Shop</a>
+            {{-- <ul class="submenu">
               <li class="has-submenu">
                 <a href="#">Shop Layout</a>
                 <ul class="submenu">
@@ -394,7 +394,7 @@
               <li>
                 <a href="shop-checkout.html">Checkout</a>
               </li>
-            </ul>
+            </ul> --}}
           </li>
         </ul>
         <!-- End navigation menu        -->
