@@ -40,12 +40,23 @@
 
 
          });
-
-
-
-
-
          catagoryAll()
+
+         //show setting page
+         $.ajax({
+             url:"/setting_all",
+             success: function(data){
+                $('img#logo').attr('src',"media/setting/logo/"+data.logo_name)
+                $('img#stike_logo').attr('src',"media/setting/logo/"+data.stkie_logo_name)
+                $('#logo_old_valu').attr('value',data.logo_name)
+                $('#stkie_photo_old').attr('value',data.stkie_logo_name)
+                $('form#socail_form input[name = "fb"]').val(data.social.fb)
+                $('form#socail_form input[name = "tw"]').val(data.social.tw)
+                $('form#socail_form input[name = "lnk"]').val(data.social.lnk)
+                $('form#socail_form input[name = "ins"]').val(data.social.ins)
+                $('form#socail_form input[name = "web"]').val(data.social.web)
+              }
+         })
 
 
 
@@ -399,11 +410,13 @@
             scrollTop: $("#add_post").offset().top
         }, 600);
     })
+
+   // ________________image view section_________________________________
     //psot iamge show
     $(document).on('change','input#up_photo',function(e){
 
         let post_photo = URL.createObjectURL(e.target.files[0])
-        console.log(post_photo)
+
         $('img#post_image_view').attr('src',post_photo)
     });
 
@@ -422,7 +435,21 @@
         $('img#product_image_view').attr('src',product_photo)
     });
 
+    //logo show
+    $(document).on('change','input#up_logo',function(e){
 
+        let product_photo = URL.createObjectURL(e.target.files[0])
+
+        $('img#logo').attr('src',product_photo)
+    });
+    //stike logo
+    $(document).on('change','input#up_stike_logo',function(e){
+
+        let product_photo = URL.createObjectURL(e.target.files[0])
+
+        $('img#stike_logo').attr('src',product_photo)
+    });
+// ________________image view section_________________________________end
 
     //post edit
     $(document).on('click','a#post_edit',function(e){
@@ -515,5 +542,39 @@
         //}
 
 
+    })
+
+
+    //settings
+    // logo update
+    $(document).on('submit','form#logo_form',function(e){
+        e.preventDefault()
+        $.ajax({
+            url: "/logo_update",
+            data: new FormData(this),
+            method:"POST",
+            processData:false,
+            contentType: false,
+            success: function(data){
+                notifi('success',"Update log successfull",data)
+            }
+        })
+
+    })
+
+    //socail link update
+    $(document).on('submit','form#socail_form',function(e){
+        e.preventDefault()
+        $.ajax({
+            url:"/link_update",
+            data: new FormData(this),
+            method: "POST",
+            processData: false,
+            contentType: false,
+            success: function(data){
+                console.log(data)
+                notifi('success',"Update Links successfull",data)
+            }
+        })
     })
 })(jQuery)

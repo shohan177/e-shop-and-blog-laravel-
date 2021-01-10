@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend.home');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 // Route::get('/blog', function () {
 //     return view('frontend.blog');
 // });
@@ -77,3 +77,11 @@ Route::get('/blog-recent/{slug}', 'App\Http\Controllers\frontendController@recen
 Route::get('/products', 'App\Http\Controllers\frontendController@productShow') -> name('products');
 Route::get('/category-products-category/{slug}', 'App\Http\Controllers\frontendController@productByCategory') -> name('products-categorys');
 Route::get('/products-tag/{slug}', 'App\Http\Controllers\frontendController@productBytag') -> name('products-tags');
+
+//setting
+
+Route::get('/settings','App\Http\Controllers\SettingcController@settingIndex') -> name('setting_index');
+Route::post('/logo_update','App\Http\Controllers\SettingcController@logoUpdate') -> name('logo_update');
+Route::get('/setting_all','App\Http\Controllers\SettingcController@showAll') -> name('setting_all');
+Route::post('/link_update','App\Http\Controllers\SettingcController@linksUpdate') -> name('links_update');
+

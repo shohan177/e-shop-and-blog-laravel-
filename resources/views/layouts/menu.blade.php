@@ -39,6 +39,9 @@
                         <li><a href="lock-screen.html"> Lock Screen </a></li> --}}
                     </ul>
                 </li>
+                <li class="">
+                    <a href="{{ route('setting_index') }}"><i class="fe fe-home"></i> <span>Settings</span></a>
+                </li>
                 {{-- <li class="submenu">
                     <a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
