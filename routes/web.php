@@ -84,4 +84,14 @@ Route::get('/settings','App\Http\Controllers\SettingcController@settingIndex') -
 Route::post('/logo_update','App\Http\Controllers\SettingcController@logoUpdate') -> name('logo_update');
 Route::get('/setting_all','App\Http\Controllers\SettingcController@showAll') -> name('setting_all');
 Route::post('/link_update','App\Http\Controllers\SettingcController@linksUpdate') -> name('links_update');
+Route::post('/home_slider','App\Http\Controllers\SettingcController@homePageSliderUpdate') -> name('home_slider_update');
+
+//sliders
+Route::get('/slider','App\Http\Controllers\sliderController@index') -> name('slider');
+Route::post('/slider','App\Http\Controllers\sliderController@store') -> name('slider');
+
+
+Route::get('sliders', function () {
+    return view('sliders.index');
+});
 

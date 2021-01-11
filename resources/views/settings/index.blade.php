@@ -81,6 +81,52 @@
 
                 {{-- social link strat  --}}
                 <div class="col-sm-6">
+                @php
+                    $slider_data = App\Models\Sliders::latest() -> get();
+                @endphp
+
+                    <div class="card shadow border border-primary">
+                        <div class="card-header">
+                            Home Page Slider
+                        </div>
+                        <div class="card-body">
+                        <form action="" id="select_slider">
+                            @csrf
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select name="slider_id" class="form-control">
+                                        @php
+                                            $home_data = App\Models\HomePage::find(1);
+                                            $home_array = json_decode($home_data -> slider)
+                                        @endphp
+
+
+                                        @foreach ($slider_data as $val)
+                                        @php
+                                            $data = json_decode($val -> json_data)
+                                        @endphp
+                                            @if ($home_array -> photo1 == $data -> photo1)
+                                                <option selected value="{{ $val -> id }}">{{ $data -> tilte1 }}</option>
+                                            @else
+                                                <option class="active" value="{{ $val -> id }}">{{ $data -> tilte1 }}</option>
+                                            @endif
+
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="submit" class="btn btn-info" value="Update">
+                                </div>
+                            </div>
+
+                        </form>
+
+                        </div>
+                    </div>
+
+
+
                     <div class="card shadow border border-primary">
                         <div class="card-header">
                           Social Links

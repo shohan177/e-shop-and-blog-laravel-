@@ -1,42 +1,47 @@
 @extends('frontend.layouts.app')
 @section('main_section')
-
+@php
+    $home_data = App\Models\HomePage::find(1);
+    $home = json_decode($home_data -> slider)
+@endphp
         <!-- Home section-->
         <section id="home">
             <!-- Video background-->
-            <div id="video-wrapper" data-fallback-bg="frontend/images/bg/5.jpg">
+            {{-- <div id="video-wrapper" data-fallback-bg="frontend/images/bg/5.jpg">
               <div data-property="{videoURL: '9No-FiEInLA'}" class="player"></div>
-            </div>
+            </div> --}}
             <!-- end of video background-->
             <!-- Home Slider-->
-            <div id="home-slider" class="flexslider">
-              <ul class="slides">
-                <li>
-                  <div class="slide-wrap">
-                    <div class="slide-content text-left bold-text">
-                      <div class="container">
-                        <h6>Start building today. It's your turn.</h6>
-                        <h1 class="upper">Interactive design studio<span class="red-dot"></span></h1>
-                        <p><a href="#" class="btn btn-light-out">Read More</a><a href="#" class="btn btn-color btn-full">Services</a>
-                        </p>
+            <div id="home-slider" class="flexslider kenburn">
+                <ul class="slides">
+                  <li>
+                    <img src="{{ URL::to('/')}}/media/setting/slider/{{ $home -> photo1 }}" alt="">
+                    <div class="slide-wrap">
+                      <div class="slide-content bold-text">
+                        <div class="container">
+                          <h6 class="upper">{{ $home -> sub1 }}</h6>
+                          <h1 class="upper">{{  $home -> tilte1 }}<span class="red-dot"></span></h1>
+                          <p class="mt-50"><a href="#about" data-scroll="true" class="btn btn-color btn-scroll"><span><i class="ti-angle-down"></i></span></a>
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="slide-wrap">
-                    <div class="slide-content text-left bold-text">
-                      <div class="container">
-                        <h6>We create websites and videos.</h6>
-                        <h1 class="upper">Welcome to comet<span class="red-dot"></span></h1>
-                        <p><a href="#" class="btn btn-color">Explore</a><a href="#" class="btn btn-light-out">Join us</a>
-                        </p>
+                  </li>
+                  <li>
+                    <img src="{{ URL::to('/')}}/media/setting/slider/{{ $home -> photo2 }}" alt="">
+                    <div class="slide-wrap">
+                      <div class="slide-content bold-text">
+                        <div class="container">
+                          <h6 class="upper">{{ $home -> sub2 }} .</h6>
+                          <h1 class="upper">{{  $home -> tilte2 }}<span class="red-dot"></span></h1>
+                          <p class="mt-50"><a href="#about" data-scroll="true" class="btn btn-color btn-scroll"><span><i class="ti-angle-down"></i></span></a>
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
+                  </li>
+                </ul>
+              </div>
             <!-- end of home slider-->
           </section>
           <!-- end of home section-->

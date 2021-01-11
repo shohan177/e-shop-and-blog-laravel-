@@ -449,6 +449,22 @@
 
         $('img#stike_logo').attr('src',product_photo)
     });
+
+    //SLIDER IMAGE VIEW
+    $(document).on('change','input#slider_up_photo1',function(e){
+
+        let product_photo = URL.createObjectURL(e.target.files[0])
+
+        $('img#slider_photo1').attr('src',product_photo)
+    });
+
+
+    $(document).on('change','input#slider_up_photo2',function(e){
+
+        let product_photo = URL.createObjectURL(e.target.files[0])
+
+        $('img#slider_photo2').attr('src',product_photo)
+    });
 // ________________image view section_________________________________end
 
     //post edit
@@ -574,6 +590,21 @@
             success: function(data){
                 console.log(data)
                 notifi('success',"Update Links successfull",data)
+            }
+        })
+    })
+
+    // home page slider
+    $(document).on('submit','form#select_slider',function(e){
+        e.preventDefault()
+        $.ajax({
+            url:'/home_slider',
+            method: "POST",
+            data: new FormData(this),
+            contentType: false,
+            processData:false,
+            success: function(data){
+                notifi('success',"Slider successfull",data)
             }
         })
     })

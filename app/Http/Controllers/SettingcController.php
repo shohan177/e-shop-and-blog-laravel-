@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomePage;
 use App\Models\Setting;
+use App\Models\Sliders;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 
@@ -88,6 +90,18 @@ class SettingcController extends Controller
 
     }
 
+    public function homePageSliderUpdate(Request $request){
+
+        $slider_data = Sliders::find($request -> slider_id);
+        $slider_json = $slider_data -> json_data;
+
+        $homepageData = HomePage::find(1);
+        $homepageData -> slider = $slider_json;
+        $homepageData -> update();
+
+        return "SET";
+
+    }
 
 
 }
