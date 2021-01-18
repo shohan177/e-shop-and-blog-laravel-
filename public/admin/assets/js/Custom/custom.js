@@ -433,6 +433,7 @@
         let product_photo = URL.createObjectURL(e.target.files[0])
 
         $('img#product_image_view').attr('src',product_photo)
+
     });
 
     //logo show
@@ -451,11 +452,12 @@
     });
 
     //SLIDER IMAGE VIEW
-    $(document).on('change','input#slider_up_photo1',function(e){
+    $(document).on('change','.slider_up_photo1',function(e){
 
         let product_photo = URL.createObjectURL(e.target.files[0])
-
-        $('img#slider_photo1').attr('src',product_photo)
+        let id = $(this).attr('rand_id')
+        $('img#slider_photo1'+id).attr('src',product_photo)
+        $('#new_uploade'+id).attr('value',1)
     });
 
 
@@ -608,4 +610,157 @@
             }
         })
     })
+
+    $(document).on('click','#plus_slide',function(e){
+        e.preventDefault()
+
+        $('#myModal').modal('show');
+
+
+
+    })
+
+    //advance  add new slide
+    $(document).on('click','#adv_add_new_slide',function(e){
+        e.preventDefault();
+        let rend_id = Math.floor(Math.random() * 10000)
+
+
+        $('.slider-container').append(' <div id="slide_body_'+rend_id+'" class="col-xl-10 d-flex">\n' +
+'       <div class="card flex-fill shadow">\n' +
+'           <div style="width: 100px; margin-left:750px">\n' +
+'           <button style="margin-top: -10px;" type="button" id="adv_add_new_slide" class="btn btn-outline-primary rounded-pill">Add New</button>\n' +
+'            </div>\n' +
+'             <div class="card-header" data-toggle="collapse" href="#slider-'+rend_id+'">\n' +
+'               <h4 class="card-title">Slider #'+rend_id+' <button id="remove_slide" remove_id="'+rend_id+'" class="close">&times;</button></h4>\n' +
+'             </div> \n' +
+'             <div id="slider-'+rend_id+'" class="collapse">\n' +
+'               <input  type="text" name="Rendid[]" value="'+rend_id+'" style="display: none">\n' +
+
+'                 <div class="card-body">\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Photo</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                              <label for="slider_up_photo'+rend_id+'"><img id="slider_photo'+rend_id+'" style="cursor: pointer; " src="/media/default.png"  width="200px"  alt=""></label>\n' +
+'                               <input name="slider_photo[]" class="load_photo" id="slider_up_photo'+rend_id+'" rand_id="'+rend_id+'" style="display: none" type="file">\n' +
+'                               <input name="old_image[]" type="text" style="display: none"></input>\n' +
+'                               <input name="new[]" id="new_uploade'+rend_id+'" type="text" style="display: none" value="0"> \n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Title</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                                 <input name="title[]" type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Sub Title</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                                 <input name="sub[]" type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Button 1 label</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                                 <input name="btn1[]" type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Button 1 URL</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                                 <input name="btn1_url[]" type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Button 2 label</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                                 <input name="btn2[]" type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                         <div class="form-group row">\n' +
+'                             <label class="col-lg-3 col-form-label">Button 2 URL</label>\n' +
+'                             <div class="col-lg-9">\n' +
+'                                 <input name="btn2_url[]" type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                         </div>\n' +
+'                 </div>\n' +
+'             </div>\n' +
+'        </div>\n' +
+'    </div>')
+    })
+
+    //vedio slider add
+    $(document).on('click','#adv_add_vedio_slide',function(e){
+        e.preventDefault();
+        let rend_id = Math.floor(Math.random() * 10000)
+
+
+        $('.slider-container-vedio').append('<div id="slide_body" class="col-xl-10 d-flex">\n' +
+'        <div class="card flex-fill shadow">\n' +
+'           <div style="width: 100px; margin-left:750px">\n' +
+'                <button style="margin-top: -10px;" type="button" id="adv_add_vedio_slide" class="btn btn-outline-primary rounded-pill">Add New</button>\n' +
+'            </div>\n' +
+'              <div class="card-header" data-toggle="collapse" href="#slider-id">\n' +
+'                <h4 class="card-title">Slider #000 </h4>\n' +
+'              </div>\n' +
+'              <div id="slider-id" class="collapse">\n' +
+'                  <div class="card-body">\n' +
+'                          <div class="form-group row">\n' +
+'                              <label class="col-lg-3 col-form-label">Title</label>\n' +
+'                              <div class="col-lg-9">\n' +
+'                                  <input name="title[]" type="text" class="form-control">\n' +
+'                                  <input name="Rendid[]" value="'+rend_id+'" type="hidden" class="form-control">\n' +
+'                             </div>\n' +
+'                          </div>\n' +
+'                          <div class="form-group row">\n' +
+'                              <label class="col-lg-3 col-form-label">Sub Title</label>\n' +
+'                              <div class="col-lg-9">\n' +
+'                                  <input name="sub[]" type="text" class="form-control">\n' +
+'                              </div>\n' +
+'                          </div>\n' +
+'                          <div class="form-group row">\n' +
+'                              <label class="col-lg-3 col-form-label">Button 1 label</label>\n' +
+'                              <div class="col-lg-9">\n' +
+'                                  <input name="btn1[]" type="text" class="form-control">\n' +
+'                              </div>\n' +
+'                          </div>\n' +
+'                          <div class="form-group row">\n' +
+'                              <label class="col-lg-3 col-form-label">Button 1 URL</label>\n' +
+'                              <div class="col-lg-9">\n' +
+'                                  <input name="btn1_url[]" type="text" class="form-control">\n' +
+'                              </div>\n' +
+'                          </div>\n' +
+'                          <div class="form-group row">\n' +
+'                              <label class="col-lg-3 col-form-label">Button 2 label</label>\n' +
+'                              <div class="col-lg-9">\n' +
+'                                  <input  name="btn2[]" type="text" class="form-control">\n' +
+'                              </div>\n' +
+'                          </div>\n' +
+'                          <div class="form-group row">\n' +
+'                              <label class="col-lg-3 col-form-label">Button 2 URL</label>\n' +
+'                              <div class="col-lg-9">\n' +
+'                                  <input name="btn2_url[]"  type="text" class="form-control">\n' +
+'                             </div>\n' +
+'                          </div>\n' +
+'                </div>\n' +
+'              </div>\n' +
+'         </div>\n' +
+'     </div>')
+    })
+    //remove slide
+    $(document).on('click','#remove_slide',function(e){
+        e.preventDefault()
+        let id = $(this).attr('remove_id')
+        $('#slide_body_'+id).remove()
+    })
+
+    //show slide image
+    $(document).on('change','.load_photo',function(e){
+        let id = $(this).attr('rand_id');
+        let photo = URL.createObjectURL(e.target.files[0])
+        $('#new_uploade'+id).attr('value',1)
+        $('img#slider_photo'+id).attr('src',photo)
+
+    });
+
 })(jQuery)

@@ -42,8 +42,12 @@
                 <li class="">
                     <a href="{{ route('setting_index') }}"><i class="fe fe-home"></i> <span>Settings</span></a>
                 </li>
-                <li class="">
-                    <a href="{{ route('slider') }}"><i class="fe fe-home"></i> <span>Sliders</span></a>
+                <li class="submenu">
+                    <a href=""><i class="fe fe-vector"></i> <span>Advance</span><span class="menu-arrow"></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('slider') }}"> Sliders Gallary </a></li>
+                        <li><a href="{{ route('slide_add') }}"> Add Slider </a></li>
+                    </ul>
                 </li>
                 {{-- <li class="submenu">
                     <a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>

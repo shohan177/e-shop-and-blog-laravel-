@@ -84,14 +84,26 @@ Route::get('/settings','App\Http\Controllers\SettingcController@settingIndex') -
 Route::post('/logo_update','App\Http\Controllers\SettingcController@logoUpdate') -> name('logo_update');
 Route::get('/setting_all','App\Http\Controllers\SettingcController@showAll') -> name('setting_all');
 Route::post('/link_update','App\Http\Controllers\SettingcController@linksUpdate') -> name('links_update');
-Route::post('/home_slider','App\Http\Controllers\SettingcController@homePageSliderUpdate') -> name('home_slider_update');
+Route::post('/home_slider','App\Http\Controllers\homePageController@homePageSliderUpdate') -> name('home_slider_update');
 
 //sliders
-Route::get('/slider','App\Http\Controllers\sliderController@index') -> name('slider');
-Route::post('/slider','App\Http\Controllers\sliderController@store') -> name('slider');
 
 
-Route::get('sliders', function () {
-    return view('sliders.index');
+
+
+
+Route::get('/slide-add', function () {
+    return view('advance slider.add_slider');
+}) -> name('slide_add');
+
+
+//advance slider
+Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'advance'], function () {
+
+    Route::post('/slider','sliderController@storeAdvanceSlide') -> name('store.slide');
+    Route::get('/sliders','sliderController@index') -> name('slider');
+    Route::get('slider-single/{id}','sliderController@singleSlider') -> name('single.slider');
+    Route::post('/slider-update','sliderController@updateSliderData') -> name('udate.slider');
+    Route::post('/vedio-slider','sliderController@storeVedioSLider') -> name('store.vedio.slider');
+
 });
-

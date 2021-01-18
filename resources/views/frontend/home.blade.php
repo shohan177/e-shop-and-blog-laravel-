@@ -3,6 +3,8 @@
 @php
     $home_data = App\Models\HomePage::find(1);
     $home = json_decode($home_data -> slider)
+
+
 @endphp
         <!-- Home section-->
         <section id="home">

@@ -1,10 +1,14 @@
+@php
+    $setting_data = App\Models\Setting::find(1)
+@endphp
+
 <header id="topnav">
     <div class="container">
       <!-- Logo container-->
       <div class="logo">
         <a href="index-2.html">
-          <img src="frontend/images/logo_light.png" alt="" class="logo-light">
-          <img src="frontend/images/logo_dark.png" alt="" class="logo-dark">
+          <img width="{{ $setting_data ->logo_width }}" src="{{ URL::to('/')}}/media/setting/logo/{{ $setting_data -> logo_name }}" alt="" class="logo-light">
+          <img width="{{ $setting_data ->stike_logo_width }}" src="{{ URL::to('/')}}/media/setting/logo/{{ $setting_data -> stkie_logo_name}}" alt="" class="logo-dark">
         </a>
       </div>
       <!-- End Logo container-->

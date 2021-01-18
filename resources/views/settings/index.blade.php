@@ -95,7 +95,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <select name="slider_id" class="form-control">
-                                        @php
+                                        {{-- @php
                                             $home_data = App\Models\HomePage::find(1);
                                             $home_array = json_decode($home_data -> slider)
                                         @endphp
@@ -105,13 +105,13 @@
                                         @php
                                             $data = json_decode($val -> json_data)
                                         @endphp
-                                            @if ($home_array -> photo1 == $data -> photo1)
+                                            @if ($home_array -> photo == $data -> photo)
                                                 <option selected value="{{ $val -> id }}">{{ $data -> tilte1 }}</option>
                                             @else
                                                 <option class="active" value="{{ $val -> id }}">{{ $data -> tilte1 }}</option>
                                             @endif
 
-                                        @endforeach
+                                        @endforeach --}}
 
                                     </select>
                                 </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HomePage;
 use App\Models\Setting;
-use App\Models\Sliders;
+
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 
@@ -12,6 +12,16 @@ use function GuzzleHttp\json_decode;
 
 class SettingcController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //photo uplode function
     public function photoUplode($photo, $old_photo){
 
@@ -90,18 +100,7 @@ class SettingcController extends Controller
 
     }
 
-    public function homePageSliderUpdate(Request $request){
 
-        $slider_data = Sliders::find($request -> slider_id);
-        $slider_json = $slider_data -> json_data;
-
-        $homepageData = HomePage::find(1);
-        $homepageData -> slider = $slider_json;
-        $homepageData -> update();
-
-        return "SET";
-
-    }
 
 
 }
