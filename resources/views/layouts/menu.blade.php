@@ -34,7 +34,7 @@
                     <ul style="display: none;">
                         <li><a href="{{ url('/product') }}"> Product </a></li>
                         <li><a href="{{ url('/product') }}"> Add Product </a></li>
-                        <li><a href="post#add_post">Product Setting</a></li>
+                        <li><a href="{{ route('product-category.index') }}">Product Setting</a></li>
                         {{-- <li><a href="forgot-password.html"> Forgot Password </a></li>
                         <li><a href="lock-screen.html"> Lock Screen </a></li> --}}
                     </ul>

@@ -60,4 +60,16 @@ class frontendController extends Controller
         $tag = Key::where('slug',$slug) -> first();
         return view("frontend.products.tag_products",compact('tag'));
     }
+
+    //new
+    public function singleProduct($slug){
+        $single_product = Product::where('slug',$slug) -> first();
+        return view('frontend.products.single_product',compact('single_product'));
+    }
+
+    public function searchProduct(Request $request){
+        $s_val = $request -> name;
+        $data = Product::where('name','like','%'.$s_val.'%')-> get();
+        return view("frontend.products.search_products",compact('data'));
+    }
 }

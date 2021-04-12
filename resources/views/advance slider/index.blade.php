@@ -37,34 +37,41 @@
                                 @endphp
                                 @if ($slider_data -> type == "image")
                                     @foreach ($slider_data -> sliders  as $itm)
-                                        <div class="col-lg-3 col-md-4 col-6">
-                                            <a href="{{ route('single.slider',$id ) }}" class="d-block mb-4 h-100">
-                                            <img class="img-fluid img-thumbnail" src="{{ URL::to('/') }}/media/setting/slider/{{ $itm -> photo }}" alt="">
-                                            </a>
+                                    <div class="card col-lg-3 col-md-4 col-6 m-l-15 shadow border-light">
+                                        <div class="card-header">
+                                            <i class="fa fa-picture-o" aria-hidden="true"></i><br><h4>{{ $slider_data -> name }}</h4>
                                         </div>
+                                        <div class="card-body">
+                                            <div class="">
+
+                                                <a href="{{ route('single.slider',$id ) }}" class="d-block mb-4 h-100">
+                                                <img class="img-fluid img-thumbnail" src="{{ URL::to('/') }}/media/setting/slider/{{ $itm -> photo }}" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     @break
                                     @endforeach
                                 @else
-
-                                        <div class="col-lg-3 col-md-4 col-6">
+                                <div class="card col-lg-3 col-md-4 col-6 m-l-15 shadow border-light">
+                                    <div class="card-header">
+                                        <i class="fa fa-video-camera" aria-hidden="true"></i><br><h4>{{ $slider_data -> name }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="">
                                             <a href="{{ route('single.slider',$id ) }}" class="d-block mb-4 h-100">
                                                 <img  class="img-fluid img-thumbnail" src="{{ URL::to('/') }}/media/default.png" alt="">
                                             </a>
                                         </div>
+                                    </div>
+                                </div>
 
                                 @endif
 
 
 
                             @endforeach
-
-
-
-                            <div class="col-lg-3 col-md-4 col-6" id="plus_slide">
-                                <a href="#" class="d-block mb-4 h-100">
-                                    <img class="img-fluid img-thumbnail" src="{{ URL::to('/') }}/media/plus.png" alt="">
-                                    </a>
-                            </div>
                             </div>
 
                         </div>

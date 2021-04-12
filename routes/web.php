@@ -77,6 +77,9 @@ Route::get('/blog-recent/{slug}', 'App\Http\Controllers\frontendController@recen
 Route::get('/products', 'App\Http\Controllers\frontendController@productShow') -> name('products');
 Route::get('/category-products-category/{slug}', 'App\Http\Controllers\frontendController@productByCategory') -> name('products-categorys');
 Route::get('/products-tag/{slug}', 'App\Http\Controllers\frontendController@productBytag') -> name('products-tags');
+Route::get('/product-single/{slug}', 'App\Http\Controllers\frontendController@singleProduct') -> name('products-single');
+Route::post('/product-search', 'App\Http\Controllers\frontendController@searchProduct') -> name('products-search');
+
 
 //setting
 

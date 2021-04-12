@@ -2,9 +2,14 @@
     <div class="sidebar">
         <div class="widget">
         <h6 class="upper">Search Shop</h6>
-        <form>
-          <input type="text" placeholder="Search.." class="form-control">
-        </form>
+        <form action="{{ route('products-search') }}" method="POST" class="inline-form">
+            @csrf
+            <div class="input-group">
+              <input type="text" name="name" placeholder="Search" class="form-control"><span class="input-group-btn"><button type="submit" class="btn btn-color"><span><i class="ti-search"></i></span>
+              </button>
+              </span>
+            </div>
+          </form>
       </div>
          <!-- end of widget        -->
       <div class="widget">
@@ -18,7 +23,7 @@
                 <div class="product-thumbnail">
                 <img src="{{ URL::to("/") }}/media/products/{{ $p -> photo }}" alt="">
                 </div>
-                <div class="product-summary"><a href="#">{{ $p -> name }}</a><span>$199.99</span>
+                <div class="product-summary"><a href="{{ route('products-single',$p -> slug) }}">{{ $p -> name }}</a><span>$199.99</span>
                 </div>
             </li>
           @endforeach
