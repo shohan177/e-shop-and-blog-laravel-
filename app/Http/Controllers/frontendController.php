@@ -20,7 +20,7 @@ class frontendController extends Controller
     }
 
     public function blog(){
-        $post_data = Post::latest() -> paginate(5);
+        $post_data = Post::latest() -> paginate(1);
         return view('frontend.blog',compact('post_data'));
     }
 
@@ -53,12 +53,14 @@ class frontendController extends Controller
 
     public function productByCategory($slug){
         $ctegorys = Department::where('slug',$slug) -> first();
-        return view("frontend.products.category_products",compact('ctegorys'));
+        $data = $ctegorys -> products()-> paginate(9);
+        return view("frontend.products.category_products",compact('data'));
     }
 
     public function productBytag($slug){
         $tag = Key::where('slug',$slug) -> first();
-        return view("frontend.products.tag_products",compact('tag'));
+        $data = $tag -> productstags()-> paginate(9);
+        return view("frontend.products.tag_products",compact('data'));
     }
 
     //new

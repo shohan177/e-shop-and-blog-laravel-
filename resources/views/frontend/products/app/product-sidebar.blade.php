@@ -39,7 +39,7 @@
              $product_category = App\Models\Department::latest() -> get();
          @endphp
          @foreach ($product_category as $c)
-         <li><a href="{{ route('products-categorys',$c -> slug) }}">{{ $c -> name }}</a></li>
+         <li><a href="{{ route('products-categorys',$c -> slug) }}">{{ $c -> name }} ({{ count($c -> products ) }})</a></li>
          @endforeach
 
         </ul>
