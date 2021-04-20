@@ -20,7 +20,8 @@
 		{{-- <link rel="stylesheet" href="{{ asset('admin/assets/plugins/datatables/datatables.min.css') }}"> --}}
 
 		<link rel="stylesheet" href="{{ asset('admin/assets/plugins/morris/morris.css') }}">
-
+        <!----select2---->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">

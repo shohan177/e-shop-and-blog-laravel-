@@ -159,7 +159,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect2"> Multiple select category</label>
-                                <select id="cat_select" name="cat_id[]"  multiple class="form-control" id="exampleFormControlSelect2">
+                                <select  id="cat_select" name="cat_id[]"  multiple class="form-control" id="exampleFormControlSelect2">
 
 
                                 @foreach ($category_data as $d)
@@ -170,10 +170,11 @@
                                 </select>
                               </div>
                         </div>
+                        {{-- tag selction  --}}
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="exampleFormControlSelect2">Multiple select tag</label>
-                                <select id="tag_select" name="tag[]" multiple class="form-control" id="exampleFormControlSelect2">
+                                <label for="exampleFormControlSelect2">Multiple select tag</label><br>
+                                <select style="width: 100%" id="tag_select" name="tag[]" multiple class="tag_selection">
                                     @foreach ($tag_data as $d)
                                      <option value="{{ $d-> id }}">{{ $d-> name }}</option>
                                     @endforeach
@@ -231,8 +232,8 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="exampleFormControlSelect2">Multiple select tag</label>
-                                <select id="tag_select" name="tag[]" multiple class="form-control" id="exampleFormControlSelect2">
+                                <label for="exampleFormControlSelect2">Multiple select tag</label><br>
+                                <select style="width: 100%" name="tag[]" multiple class="tag_selection">
                                     @foreach ($tag_data as $d)
                                      <option value="{{ $d-> id }}">{{ $d-> name }}</option>
                                     @endforeach

@@ -2,6 +2,7 @@
 
     $(document).ready(function(){
 
+        $('.tag_selection').select2()
         $('#add_post').removeClass('d-none')
         $('#edit_post').addClass('d-none')
 

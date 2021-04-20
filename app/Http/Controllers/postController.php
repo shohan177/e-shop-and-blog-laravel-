@@ -71,6 +71,8 @@ class postController extends Controller
         $post_data_push = Post::create([
             'title' => $request -> titel,
             'slug' => Str::slug($request -> titel),
+            // for not damage bangla post slag
+            // 'slug' => str_replace('','-',$request -> titel),
             'status' => 1,
             'contain' => $request -> conatin,
             'photo' => $u_img,
